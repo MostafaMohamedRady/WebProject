@@ -44,6 +44,10 @@
         <servlet-name>UpdateProfileController</servlet-name>
         <servlet-class>controller.UpdateProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminAddProduct</servlet-name>
+        <servlet-class>controller.AdminAddProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/IndexController</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>UpdateProfileController</servlet-name>
         <url-pattern>/UpdateProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAddProduct</servlet-name>
+        <url-pattern>/AdminAddProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

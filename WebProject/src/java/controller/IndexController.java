@@ -47,7 +47,7 @@ public class IndexController extends HttpServlet {
         int visitor = (int) request.getServletContext().getAttribute("visitor");
         request.getServletContext().setAttribute("visitor", ++visitor);
         
-        ProductDao pDao = new ProductDao();
+      //  ProductDao pDao = new ProductDao();
         CategoriesDao cDao = new CategoriesDao();
         ArrayList<Categories> cList = cDao.selectAll();
 
