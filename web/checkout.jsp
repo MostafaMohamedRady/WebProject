@@ -25,6 +25,7 @@
                             });
                         });
                     </script>
+                    <c:set var="totalpay" value="0" scope="page"/>
                     <c:forEach items="${user.cartProductCollection}" var="productList">
                         <c:if test="${productList.paymentIdpayment.idpayment!=0}">
                     <div class="cart-header">
@@ -34,15 +35,18 @@
                                 <img src="${productList.product.productImg}" class="img-responsive" alt=""/>
                             </div>
                             <div class="cart-item-info">
-                                <h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
+                                <h3><a href="#">${productList.product.productName}</a><span>Category:${productList.product.categories.categoryName}</span></h3>
                                 <ul class="qty">
-                                    <li><p>Size : 5</p></li>
-                                    <li><p>Qty : 1</p></li>
+                                    <li><p>Size : ${productList.productsize}</p></li>
+                                    <li><p>Qty : ${productList.cartProductMount}</p></li>
+                                    <li><p>Color : ${productList.productColor}</p></li>
+                                    <li><p>Total : ${productList.totalProduct}</p></li>
+                                    ${totalpay=totalpay+productList.totalProduct}
                                 </ul>
 
                                 <div class="delivery">
-                                    <p>Service Charges : Rs.100.00</p>
-                                    <span>Delivered in 2-3 business days</span>
+                                    <p>Last Modification : ${productList.cartProductDate}</p>
+                                    <span><a href="single.jsp">Edit</a></span>
                                     <div class="clearfix"></div>
                                 </div>	
                             </div>
@@ -63,7 +67,7 @@
                    		
                 </div>
                 <div class="col-md-3 cart-total">
-                    <a class="continue" href="#">Continue to basket</a>
+                    <a class="continue" href="#">Payment</a>
                     <div class="price-details">
                         <h3>Price Details</h3>
                         <span>Total</span>

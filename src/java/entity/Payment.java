@@ -7,7 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -21,7 +21,7 @@ public class Payment implements Serializable {
     
     private float paymentTotal;
    
-    private Float paymentDiscount;
+    private float paymentDiscount;
    
     private Date paymentDate;
     
@@ -30,6 +30,8 @@ public class Payment implements Serializable {
     private List<CartProduct> cartProductCollection;
 
     public Payment() {
+        paymentTotal=0;
+        paymentDiscount=0;
     }
 
     public Payment(int idpayment) {
