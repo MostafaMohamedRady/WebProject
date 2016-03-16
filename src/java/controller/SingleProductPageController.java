@@ -5,16 +5,12 @@
  */
 package controller;
 
-import entity.CartProduct;
-import entity.Categories;
+import dao.ProductDao;
 import entity.Product;
 //import entity.ProductPK;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,9 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 public class SingleProductPageController extends HttpServlet{
 
     Product product;
-   // ProductPK productPK;
     RequestDispatcher rd;
-    //ServletContext context;
+    ProductDao pd;
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }

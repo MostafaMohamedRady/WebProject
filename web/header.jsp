@@ -1,6 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page  session="true" contentType="text/html" pageEncoding="UTF-8" %>
-
+<%@page  session="false" contentType="text/html" pageEncoding="UTF-8" %>
 <html>
     <head>
         <title>Musican Shop</title>
@@ -29,7 +28,7 @@
     </head>
     <body>
 
-<jsp:useBean id="user" class="entity.Users" scope="session"/>               
+        <%--<jsp:useBean id="user" class="entity.Users" scope="session"/>--%>               
         <div class="header">
             <div class="header-top">
                 <div class="container">
@@ -40,7 +39,7 @@
                             <li><a href="#"><i class="inst"> </i></a></li>
                             <li><a href="#"><i class="goog"> </i></a></li>
                             <li><i id="visitor" style="color: #ffffff">Visitor:${applicationScope.visitor}</i></li>
-                            <li><i id="online" style="color: #ffffff">Online:${applicationScope.online}</i></a></li>
+                            <li><i id="online" style="color: #ffffff">Online:${applicationScope.online}</i></li>
                             <div class="clearfix"></div>	
                         </ul>
                     </div>
@@ -87,13 +86,30 @@
                     </div>
                     <div class=" h_menu4">
                         <ul class="memenu skyblue">
-                            <li><a class="color8" href="index.jsp">Categories</a></li>	
-                            
-                                <c:if test="${empty sessionScope.user}">
-                                    <li><a class="color4" href="login.jsp">${sessionScope.user.userEmail}</a></li>				
-                            </c:if>
+                            <li><a class="color8" href="index.jsp">Categories</a>                               
+                                <div class="mepanel">
+                                    <div class="row">
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <ul>
+                                                    <c:forEach items="${requestScope.categoryList}" var="category">
+                                                        <li><a href="SingleCategoryController?idcategory=${category.idcategory}">${category.categoryName}</a></li>
+                                                        </c:forEach>
+                                                </ul>	
+                                            </div>							
+                                        </div>				
+                                    </div>								
+                                </div>                                
 
-                            <li><a class="color4" href="login.jsp">Login</a></li>				
+                            </li>	
+                            <c:if test="${!empty sessionScope.user}">
+                                <li><a class="color4" href="login.jsp">${sessionScope.user.userEmail}</a></li>				
+                                </c:if>
+                                <c:if test="${empty sessionScope.user}">
+                                <li><a class="color4" href="login.jsp">Login</a></li>
+                                </c:if>
+                            <li><a class="color4" href="login.jsp">${sessionScope.user.userEmail}</a></li>				
+
                             <li><a class="color6" href="contact.jsp">Contact</a></li>
                         </ul> 
                     </div>
@@ -101,4 +117,3 @@
                 </div>
             </div>
         </div>
-   

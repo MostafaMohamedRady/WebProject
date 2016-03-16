@@ -47,6 +47,7 @@ public class AddToCardController extends HttpServlet {
         CartProductDao cpd=new CartProductDao();
 
         HttpSession session=request.getSession(false);
+        session.getAttribute("user");
         if(session==null)
         {
             response.sendRedirect("login.jsp");
