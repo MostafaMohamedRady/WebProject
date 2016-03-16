@@ -171,9 +171,10 @@
                                             </div>
                                         </a>
 
-                                        <p><a href="single.html">${product.productName}</a></p>
-                                        <a href="#" class="item_add"><p class="number item_price"><i> </i>${product.productPrice}</p></a>
-                                        <br>
+                                        <p><a href="/SingleProductPageController?id=${product.idproduct}">${product.productName}</a></p>
+										<a href="#" class="item_add"><p class="number item_price"><i> </i>${product.productPrice}</p></a>
+                                        <a href="/SingleProductPageController?id=${product.idproduct}">Edit</a>
+                                        
                                     </div>
                                 </c:forEach>
                                 <div class="clearfix"> </div>

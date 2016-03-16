@@ -37,7 +37,9 @@ public class SingleProductPageController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       /* product = (Product) req.getAttribute("product");
+      
+        
+        /* product = (Product) req.getAttribute("product");
         String pSize = product.getProductSize();
         int pQuantitySold = product.getProductQuntitysold();
         int pQuantityAvailable = product.getProductQuntityavailable();
@@ -71,7 +73,7 @@ public class SingleProductPageController extends HttpServlet{
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        //context = config.getServletContext();
+        //context = config.getServletContext();t
         rd = config.getServletContext().getRequestDispatcher("/single.jsp");
     }   
 }
