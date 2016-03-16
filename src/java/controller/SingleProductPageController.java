@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Aya Mahmoud
+ *
  */
 /////////////////Added to handle passing product bean to single.jsp
 public class SingleProductPageController extends HttpServlet{
