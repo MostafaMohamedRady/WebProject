@@ -1,5 +1,4 @@
-
-        <!--header-->
+  <!--header-->
         <%@include file="header.jsp" %>
         <!-- grow -->
         <div class="grow">
@@ -7,7 +6,7 @@
                 <h2>Login</h2>
             </div>
         </div>
-
+        <!-- grow -->
         <!--content-->
         <div class="container">
             <div class="account">

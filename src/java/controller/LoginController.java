@@ -39,7 +39,6 @@ public class LoginController extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -51,23 +50,19 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Users user=null;
-        String mail=request.getParameter("userEmail");
-        String pass=request.getParameter("userPassword");
-/*
- Users user=new Users();    
-        user.setUserEmail(request.getParameter("userEmail"));
-        user.setUserPassword(request.getParameter("userPassword"));
+        Users u=new Users();
+       
+        u.setUserEmail(request.getParameter("userEmail"));
+        u.setUserPassword(request.getParameter("userPassword"));
+       
         UsersDao userDao = new UsersDao();
-        Users check = userDao.login(user);
-*/
-        UsersDao userDao = new UsersDao();
-        user = userDao.login(mail, pass);
-        if (user!=null) {
+        
+        Users user = userDao.login(u);
+        if (user !=null) {
             HttpSession session=request.getSession(true);
-            session.setAttribute("user", user);
-            System.out.println(user.getUserEmail()+"/"+user.getUserName());
-            response.sendRedirect("profile.jsp");
+           session.setAttribute("user", user);
+            System.out.println("login :"+user.getUserName());          
+            response.sendRedirect("index.jsp");
         } else {
             response.sendRedirect("login.jsp");
         }

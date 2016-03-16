@@ -1,11 +1,10 @@
 <!--
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%> --> 
+<%@page session="false" contentType="text/html" pageEncoding="UTF-8"%> --> 
 <%--<%@include  file="header.jsp" %>--%>
 <jsp:include page="header.jsp"></jsp:include>
        <%-- <jsp:useBean id="categoryList" class="entity.Categories" scope="request"/> Get The List categories --%>
         <!--header-->
-        <%--<jsp:include page="header.jsp"></jsp:include>--%>
        
             <div class="banner">
                 <div class="container">
@@ -163,7 +162,7 @@
                             <div class="grid-in">
                                 <c:forEach items="${category.productCollection}" var="product">
                                     <div class="col-md-3 grid-top">
-                                        <a href="?id=${product.productName}" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="${product.productImg}" alt="">
+                   <a href="SingleProductPageController?id=${product.idproduct}" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="${product.productImg}" alt="">
                                             <div class="b-wrapper">
                                                 <h3 class="b-animate b-from-left    b-delay03 ">
                                                     <span><c:out value="${product.productName}"/></span>
@@ -171,7 +170,7 @@
                                             </div>
                                         </a>
 
-                                        <p><a href="single.html">${product.productName}</a></p>
+                                           <p><a href="SingleProductPageController?id=${product.idproduct}">${product.productName}</a></p>
                                         <a href="#" class="item_add"><p class="number item_price"><i> </i>${product.productPrice}</p></a>
                                         <br>
                                     </div>

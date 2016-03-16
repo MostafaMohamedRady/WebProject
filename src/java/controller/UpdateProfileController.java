@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,7 +38,7 @@ public class UpdateProfileController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateProfileController</title>");            
+            out.println("<title>Servlet UpdateProfileController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpdateProfileController at " + request.getContextPath() + "</h1>");
@@ -58,48 +59,45 @@ public class UpdateProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        // Users user=new Users();
-        Users user=(Users) request.getSession().getAttribute("email");
-       // user.setUserEmail(request.getParameter("email"));
+
+        HttpSession session = request.getSession(false);
+        Users user = (Users) session.getAttribute("user");
+        //Users user=(Users) request.getSession().getAttribute("user");
+        // user.setUserEmail(request.getParameter("email"));
+        user.setUserZip(0);
         user.setUserCharge(Float.valueOf((request.getParameter("userCharge"))));
         user.setUserAddress(request.getParameter("userAdderess"));
         user.setUserJob(request.getParameter("userJob"));
         user.setUserMobile(request.getParameter("userMobile"));
-        user.setUserZip(Integer.valueOf(request.getParameter("userZip")));
-        
-        UsersDao userDao = new UsersDao();
-        
-        int update = userDao.update(user);
-         if (update ==0) {
-      //      if(checkMail)
-            response.sendRedirect("profile.jsp");
-
+        if (Integer.valueOf(request.getParameter("userZip")) == 0 || request.getParameter("userZip") == null) {
+            user.setUserZip(0);
         } else {
-            //response.sendRedirect("login.jsp");
-            response.sendRedirect("products.jsp");
+            user.setUserZip(Integer.parseInt(request.getParameter("userZip")));
         }
+        UsersDao userDao = new UsersDao();
+        int update = userDao.update(user);
 
+        if (session.getAttribute("user") == null) {
+            response.sendRedirect("login.jsp");
+        } else {
+            if (update == 0) {
+                //      if(checkMail)
+                response.sendRedirect("profile.jsp");
+            } else {
+                //response.sendRedirect("login.jsp");
+                response.sendRedirect("products.jsp");
+            }
+
+        }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
