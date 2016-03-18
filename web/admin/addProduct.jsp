@@ -1,6 +1,4 @@
 
-<!--header-->
-<%@include file="header.jsp" %>
 <!-- grow -->
 <div class="grow">
     <div class="container">
@@ -61,4 +59,3 @@
 </div>
 
 <!--//content-->
-<%@include file="footer.jsp" %>

@@ -162,15 +162,14 @@
                             <div class="grid-in">
                                 <c:forEach items="${category.productCollection}" var="product">
                                     <div class="col-md-3 grid-top">
-                                        <a href="/SingleProductPageController?id=${product.idproduct}" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="${product.productImg}" alt="">
+                                        <a href="/WebProject/SingleProductPageController?id=${product.idproduct}" class="b-link-stripe b-animate-go  thickbox"><img class="img-responsive" src="${product.productImg}" alt="">
                                             <div class="b-wrapper">
                                                 <h3 class="b-animate b-from-left    b-delay03 ">
                                                     <span><c:out value="${product.productName}"/></span>
                                                 </h3>
                                             </div>
                                         </a>
-
-                                           <p><a href="SingleProductPageController?id=${product.idproduct}">${product.productName}</a></p>
+                                        <p><a href="/WebProject/SingleProductPageController?id=${product.idproduct}">${product.productName}</a></p>
                                         <a href="#" class="item_add"><p class="number item_price"><i> </i>${product.productPrice}</p></a>
                                         <br>
                                     </div>

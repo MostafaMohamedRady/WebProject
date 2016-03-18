@@ -56,6 +56,14 @@
         <servlet-name>AdminAddProduct</servlet-name>
         <servlet-class>controller.AdminAddProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminEditProductController</servlet-name>
+        <servlet-class>controller.AdminEditProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminIndexController</servlet-name>
+        <servlet-class>controller.AdminIndexController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IndexController</servlet-name>
         <url-pattern>/IndexController</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>AdminAddProduct</servlet-name>
         <url-pattern>/AdminAddProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminEditProductController</servlet-name>
+        <url-pattern>/AdminEditProductController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminIndexController</servlet-name>
+        <url-pattern>/AdminIndexController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

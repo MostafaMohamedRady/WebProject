@@ -32,17 +32,27 @@ public class SingleProductPageController extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String idpro = req.getParameter("id");
-        int id = Integer.parseInt(idpro);
+       
+        String str = req.getParameter("edit");
+       
+        String idpro = req.getParameter("id");
+       int id = Integer.parseInt(idpro);
         pd = new ProductDao();
         Product prod = pd.selectById(id);
         String image = prod.getProductImg();
         req.setAttribute("product", prod);
-        rd.forward(req, resp);
+        
+        if(str==null){
+        rd = req.getRequestDispatcher("/single.jsp");
+         rd.forward(req, resp);
+            }else{
+        rd = req.getRequestDispatcher("/editSingle.jsp");
+         rd.forward(req, resp);
+        
+            }
     }
-
+    
     @Override
     public void init(ServletConfig config) throws ServletException {
-        rd = config.getServletContext().getRequestDispatcher("/single.jsp");
-    }   
+       }   
 }

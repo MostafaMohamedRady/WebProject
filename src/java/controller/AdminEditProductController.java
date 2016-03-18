@@ -7,25 +7,19 @@ package controller;
 
 import dao.ProductDao;
 import entity.Product;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author Ehab
  */
-public class AdminAddProduct extends HttpServlet {
+public class AdminEditProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +38,10 @@ public class AdminAddProduct extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AdminAddProduct</title>");            
+            out.println("<title>Servlet AdminEditProductController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AdminAddProduct at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AdminEditProductController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,14 +59,7 @@ public class AdminAddProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-//        ProductDao pDao = new ProductDao();
-//        Product product = new Product();
-//        
-    
-    
-    
-    
+        processRequest(request, response);
     }
 
     /**
@@ -87,47 +74,22 @@ public class AdminAddProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-         ProductDao pDao = new ProductDao();
-         Product product = new Product();
-         
-         product.setProductName(request.getParameter("productName"));
-         product.setProductDescription(request.getParameter("productDesc"));
-         product.setProductPrice(Float.parseFloat(request.getParameter("productPrice")));
-         product.setProductQuntityavailable(Integer.parseInt(request.getParameter("productQuantityAvailable")));
-         product.setProductQuntitysold(Integer.parseInt(request.getParameter("productQuantitySold")));
-         product.setCategoriesIdcategory(Integer.parseInt(request.getParameter("productCategory")));
-         pDao.insert(product);
-         
-         try {
-            DiskFileItemFactory factory = new DiskFileItemFactory();
-            ServletFileUpload upload = new ServletFileUpload(factory);
-            List<FileItem> items = upload.parseRequest(request);
-            Iterator<FileItem> iter =   items.iterator();
-            while(iter.hasNext()){
-                
-                FileItem item = iter.next();
-              
-                if(item.isFormField()){
-                    String name = item.getFieldName();
-                    String value = item.getString();
-                }else{
-                    if(!item.isFormField()){
-                        item.write(new File(getClass().getClassLoader().getResource("WebProject/images/")+item.getName()));
-                    }
-                }
-                
-                
-            }
-        } catch (FileUploadException ex) {
-            ex.printStackTrace();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
         
-         PrintWriter out = response.getWriter();
-         out.write("Done");
+        
+        ProductDao pDao = new ProductDao();
+        Product product = new Product();
          
-    
+        product.setIdproduct(Integer.parseInt(request.getParameter("hiddenID")));
+        product.setProductName(request.getParameter("productName"));
+        product.setProductDescription(request.getParameter("productDesc"));
+        product.setProductPrice(Float.parseFloat(request.getParameter("productPrice")));
+        product.setProductQuntityavailable(Integer.parseInt(request.getParameter("productQuantityAvailable")));
+        
+        pDao.update(product);
+        RequestDispatcher rd = request.getRequestDispatcher("indexc.jsp");
+        rd.forward(request, response);
+        
+        
     }
 
     /**

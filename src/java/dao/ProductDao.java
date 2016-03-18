@@ -62,8 +62,28 @@ public class ProductDao implements DoaInterface<Product>{
 
     @Override
     public int update(Product bean) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        int check = 0;
+        try {
+            
+          statment = DBconnect.getInstance().getconn().prepareStatement("update product set product_description=?,product_lastmodify=?,product_name=?,product_price=?,product_quntityavailable=?"
+                    + " where idproduct=?");
+            
+            statment.setString(1,bean.getProductDescription());
+            statment.setDate(2,Date.valueOf(LocalDate.now()));
+            statment.setString(3,bean.getProductName());
+            statment.setFloat(4,bean.getProductPrice());
+            statment.setInt(5,bean.getProductQuntityavailable());
+            statment.setInt(6,bean.getIdproduct());
+            
+           check= statment.executeUpdate();
+            
+            System.out.println("Update"+bean.getIdproduct());
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return check;
+    
+             }
 
     @Override
     public int delete(Product bean) {
@@ -91,6 +111,7 @@ public class ProductDao implements DoaInterface<Product>{
             statment.setInt(1, id);
             ResultSet result = statment.executeQuery();
             if (result.next()) {
+                    product.setIdproduct(id);
                     product.setCategoriesIdcategory(result.getInt("categories_idcategory"));
                     product.setProductColor(result.getString("product_color"));
                     product.setProductCount(result.getInt("product_count"));
